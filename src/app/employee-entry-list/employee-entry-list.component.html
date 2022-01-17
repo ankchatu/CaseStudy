@@ -1,0 +1,83 @@
+<button style="align-self: right;" (click)="logout()">LOGOUT</button>
+<button (click)="toHomePage()">Go back to HOME</button>
+<div style="max-height: 50%;" class="container">
+  <div class="row">
+     <div class="col-lg-12 text-center" style="padding-top: 20px;">
+        <div class="container" style="padding-left: 0px; padding-right: 0px;">
+           <div class="row">
+              <div class="col-sm" style="text-align: left;">
+                 {{ title }}
+              </div>
+
+           </div>
+        </div>
+        <div class="container box" style="margin-top: 10px;">
+           <table class="table table-striped">
+              <thead>
+                 <tr>
+                    <th>id</th>
+                    <th>name</th>
+                 </tr>
+              </thead>
+              <tbody>
+                 <tr *ngFor="let entry of employeeEntries">
+                    <th scope="row">{{ entry.id }}</th>
+                    <td>{{ entry.name }}</td>
+                    <td><button (click)="deleteEmployee(entry)">Delete</button></td>
+                    <td><button (click)="populateEditForm(entry)">Edit</button></td>
+                 </tr>
+              </tbody>
+           </table>
+        </div>
+     </div>
+  </div>
+
+
+
+  <div *ngIf="editMode" class="form-group">
+    <h4>EDIT Employee</h4>
+    <label for="ide">Employee Id</label>
+    <input type="text" class="form-control" id="ide"
+           required
+           [(ngModel)]="editModel.id" name="id"
+           #ide="ngModel">
+           <div [hidden]="ide.valid || ide.pristine"
+           class="alert alert-danger">
+        ID is required
+      </div>
+
+      <label for="namee">Employee Name</label>
+      <input type="text" class="form-control" id="name"
+             required
+             [(ngModel)]="editModel.name" name="name"
+             #name="ngModel">
+             <div [hidden]="name.valid || name.pristine"
+             class="alert alert-danger">
+          Name is required
+        </div>
+             <div class="col-sm" style="text-align: right;">
+              <button type="button" (click)="saveEmployee(editModel)" class="btn btn-primary">SAVE</button>
+           </div>
+  </div>
+
+  <div *ngIf="!editMode" class="form-group">
+    <h4>Add new Employee</h4>
+    <label for="id">Employee Id</label>
+    <input type="text" class="form-control" id="id"
+           required
+           [(ngModel)]="model.id" name="id"
+           #id="ngModel">
+
+
+      <label for="name">Employee Name</label>
+      <input type="text" class="form-control" id="name"
+             required
+             [(ngModel)]="model.name" name="name"
+             #name="ngModel">
+
+             <div class="col-sm" style="text-align: right;">
+              <button (click)="addEmployee()" type="button" class="btn btn-primary">Add</button>
+           </div>
+  </div>
+
+</div>

@@ -1,0 +1,38 @@
+<form (ngSubmit)="onSubmit()" #login="ngForm">
+
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name"
+           required
+           [(ngModel)]="model.name" name="name"
+           #name="ngModel">
+    <div [hidden]="name.valid || name.pristine"
+         class="alert alert-danger">
+      Name is required
+    </div>
+
+      <label for="password">Password</label>
+      <input type="text" class="form-control" id="password"
+             required
+             [(ngModel)]="model.password" name="password"
+             #password="ngModel">
+      <div [hidden]="password.valid || password.pristine"
+           class="alert alert-danger">
+        Password is required
+      </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="!login.form.valid">Submit</button>
+  </div>
+</form>
+
+<ul>
+  <li><p> valid credentials :</p>
+    <p style="color: blue;">user/password </p>
+    </li>
+  <li><p>User auth by service</p></li>
+  <li><p>home page added</p></li>
+  <li><P> Add Update Delete employee </P>
+  </li>
+  <li><P> Auth Guard </P></li>
+</ul>
+
